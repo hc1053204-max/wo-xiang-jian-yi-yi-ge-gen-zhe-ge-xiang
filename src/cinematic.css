@@ -72,18 +72,92 @@ body {
   outline-offset: 2px;
 }
 
-/* Decorative court grain and spotlight for the welcome feature artwork. */
-.court-art {
-  box-shadow: inset 0 0 55px rgba(0,0,0,.34), 0 18px 45px rgba(0,0,0,.25);
+/* Make the landing page feel like a premium league launch campaign. */
+.welcome-screen {
+  min-height: calc(100vh - 5rem);
+  padding-top: clamp(2rem, 5vh, 4.5rem);
+  padding-bottom: clamp(2rem, 5vh, 4.5rem);
 }
-.court-ball { filter: drop-shadow(0 14px 22px rgba(0,0,0,.55)); }
-.season-feature { backdrop-filter: blur(12px); }
-.journey-card { backdrop-filter: blur(8px); }
+.welcome-screen::before {
+  position: absolute;
+  top: 3%;
+  right: -14%;
+  width: min(72vw, 850px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 220, 160, .045);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(255,255,255,.012), 0 0 0 8rem rgba(255,255,255,.009);
+  content: "";
+  pointer-events: none;
+}
+.welcome-layout { max-width: 1240px; column-gap: clamp(3rem, 7vw, 7rem); }
+.welcome-copy { position: relative; z-index: 2; }
+.welcome-kicker {
+  border-color: rgba(245,185,66,.32);
+  box-shadow: inset 0 1px rgba(255,255,255,.04), 0 8px 30px rgba(0,0,0,.2);
+}
+.welcome-title {
+  font-size: clamp(3.5rem, 7vw, 6.4rem);
+  text-shadow: 0 12px 60px rgba(0,0,0,.34);
+}
+.welcome-title span { background-image: linear-gradient(100deg, #fff0c8 0%, #f5b942 48%, #e0842b 100%); }
+.welcome-description { max-width: 520px; }
+.welcome-actions { gap: .85rem; }
+.court-button-primary { box-shadow: 0 12px 34px rgba(230,159,50,.24), inset 0 1px rgba(255,255,255,.56); }
 
-@media (max-width: 640px) {
-  #root main::before { opacity: .25; }
-  #root main > .space-y-6 > div:first-child::after { right: -9rem; }
+.season-feature {
+  border-color: rgba(255, 207, 123, .27);
+  background: linear-gradient(145deg, rgba(28, 34, 45, .96), rgba(9, 14, 23, .98));
+  box-shadow: 0 34px 100px rgba(0,0,0,.52), 0 0 60px rgba(245,185,66,.055), inset 0 1px rgba(255,255,255,.08);
+}
+.court-art {
+  box-shadow: inset 0 0 70px rgba(0,0,0,.44), 0 18px 45px rgba(0,0,0,.3);
+  background:
+    radial-gradient(ellipse at 50% 4%, rgba(255,214,143,.2), transparent 48%),
+    radial-gradient(ellipse at 50% 52%, rgba(199,125,53,.28), transparent 58%),
+    linear-gradient(160deg, #242633, #111720 78%);
+}
+.court-art::before {
+  opacity: .36;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.045) 25px, transparent 26px),
+    radial-gradient(ellipse at 50% 0%, rgba(255,233,193,.17), transparent 65%);
+}
+.court-art::after {
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.28), transparent 23% 77%, rgba(0,0,0,.32)),
+    linear-gradient(0deg, rgba(5,8,14,.78), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.06), transparent 36%);
+}
+.court-lines { border-color: rgba(255,226,183,.55); box-shadow: 0 0 24px rgba(255,194,103,.06); }
+.court-midline, .court-center-circle { border-color: rgba(255,226,183,.55); }
+.court-ball {
+  top: 19%;
+  width: 92px;
+  height: 92px;
+  font-size: 3.2rem;
+  filter: drop-shadow(0 15px 26px rgba(0,0,0,.65));
+}
+.court-caption { text-shadow: 0 3px 22px rgba(0,0,0,.7); }
+.journey-card {
+  min-height: 164px;
+  border-color: rgba(148,163,184,.17);
+  background: linear-gradient(140deg, rgba(22,28,39,.86), rgba(12,17,26,.86));
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 12px 30px rgba(0,0,0,.12);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.journey-card:hover { box-shadow: 0 18px 40px rgba(0,0,0,.25), 0 0 28px rgba(245,185,66,.045); }
+
+@media (max-width: 800px) {
+  .welcome-screen { padding-top: 1.5rem; }
+  .welcome-title { font-size: clamp(3.3rem, 12vw, 5.3rem); }
+}
+@media (max-width: 560px) {
+  .welcome-title { font-size: clamp(3rem, 13vw, 4.2rem); }
+  .court-ball { width: 78px; height: 78px; font-size: 2.8rem; }
+  .journey-card { min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   #root main, #root main * { scroll-behavior: auto; }
+  .journey-card, .court-button { transition: none; }
 }
